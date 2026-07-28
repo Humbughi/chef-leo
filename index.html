@@ -3,16 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#05070d">
+  <meta name="theme-color" content="#000000">
   <meta name="description" content="Prilliant – persönliche Projekte, Ideen und Entdeckungen.">
   <title>Prilliant</title>
   <style>
     :root {
-      --dark: #05070d;
-      --blue: #45b8ff;
+      --black: #000;
+      --gold: #d7a526;
+      --gold-light: #fff0a6;
+      --gold-dark: #6b4300;
       --page: #dedede;
-      --page-soft: #f3f3f3;
-      --ink: #111111;
+      --ink: #111;
       --muted: #4e4e4e;
       --door-time: 1.55s;
     }
@@ -22,10 +23,10 @@
     html, body {
       margin: 0;
       min-height: 100%;
-      background: var(--page);
-      color: var(--ink);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system,
                    BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--page);
+      color: var(--ink);
     }
 
     body {
@@ -68,12 +69,12 @@
       display: block;
       min-height: 150px;
       padding: 1.25rem;
-      border: 1px solid rgba(0, 0, 0, .18);
+      border: 1px solid rgba(0,0,0,.18);
       border-radius: 18px;
       color: #111;
       text-decoration: none;
-      background: rgba(255, 255, 255, .58);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
+      background: rgba(255,255,255,.58);
+      box-shadow: 0 12px 28px rgba(0,0,0,.08);
       transition: transform .2s ease, border-color .2s ease,
                   background .2s ease, box-shadow .2s ease;
     }
@@ -81,9 +82,9 @@
     .tile:hover,
     .tile:focus-visible {
       transform: translateY(-3px);
-      border-color: rgba(0, 0, 0, .38);
-      background: rgba(255, 255, 255, .92);
-      box-shadow: 0 16px 34px rgba(0, 0, 0, .14);
+      border-color: rgba(0,0,0,.38);
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 16px 34px rgba(0,0,0,.14);
       outline: none;
     }
 
@@ -105,64 +106,31 @@
       display: none;
       place-items: center;
       overflow: hidden;
-      background:
-        radial-gradient(circle at 50% 42%, rgba(255,255,255,1) 0%, rgba(244,244,244,.98) 34%, rgba(210,210,210,.98) 100%);
       cursor: pointer;
-    }
-
-    .placeholder::before,
-    .placeholder::after {
-      content: "";
-      position: absolute;
-      inset: -30%;
-      pointer-events: none;
-    }
-
-    .placeholder::before {
-      background: conic-gradient(from 0deg at 50% 50%, transparent 0 8%, rgba(255,220,105,.22) 9% 10%, transparent 11% 24%, rgba(255,244,184,.38) 25% 26%, transparent 27% 43%, rgba(225,173,37,.2) 44% 45%, transparent 46% 100%);
-      animation: rays 14s linear infinite;
-    }
-
-    .placeholder::after {
-      inset: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(255,244,174,.5), transparent 32%);
-      animation: glow 2.4s ease-in-out infinite;
+      background:
+        radial-gradient(circle at 50% 42%, #fff 0%, #f4f4f4 34%, #d2d2d2 100%);
     }
 
     .placeholder.visible { display: grid; }
 
     .placeholder-number {
-      position: relative;
-      z-index: 2;
       font-size: clamp(10rem, 45vw, 34rem);
       line-height: .8;
       font-weight: 950;
       letter-spacing: -.09em;
-      color: #c99618;
-      background:
-        linear-gradient(115deg,
-          #6f4500 0%,
-          #b77a08 14%,
-          #fff1a8 28%,
-          #dcae32 40%,
-          #fff8cf 50%,
-          #bf8008 63%,
-          #f7d66c 78%,
-          #7d4d00 100%);
+      background: linear-gradient(115deg,
+        #6f4500 0%, #b77a08 14%, #fff1a8 28%, #dcae32 40%,
+        #fff8cf 50%, #bf8008 63%, #f7d66c 78%, #7d4d00 100%);
       background-size: 220% 100%;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      filter: drop-shadow(0 4px 2px rgba(91, 54, 0, .4))
-              drop-shadow(0 0 14px rgba(255, 196, 38, .95))
-              drop-shadow(0 0 42px rgba(255, 214, 78, .75));
-      text-shadow:
-        0 1px 0 #fff4b2,
-        0 3px 0 #b17000,
-        0 8px 16px rgba(83, 48, 0, .35);
-      user-select: none;
+      filter: drop-shadow(0 4px 2px rgba(91,54,0,.4))
+              drop-shadow(0 0 14px rgba(255,196,38,.95))
+              drop-shadow(0 0 42px rgba(255,214,78,.75));
       animation: gold-shine 2.8s linear infinite,
                  gold-pulse 2.2s ease-in-out infinite;
+      user-select: none;
     }
 
     .gate {
@@ -171,11 +139,29 @@
       z-index: 100;
       display: grid;
       place-items: center;
-      background:
-        radial-gradient(circle at 50% 48%, rgba(255,255,255,.97) 0%, rgba(191,229,255,.92) 22%, rgba(71,160,224,.72) 48%, #0a2035 78%, #05070d 100%);
-      cursor: pointer;
       overflow: hidden;
+      cursor: pointer;
       isolation: isolate;
+      background:
+        radial-gradient(ellipse at 50% 48%, rgba(209,145,22,.12) 0%, rgba(78,45,0,.06) 27%, transparent 58%),
+        radial-gradient(circle at 12% 82%, rgba(226,166,36,.07), transparent 22%),
+        radial-gradient(circle at 88% 24%, rgba(226,166,36,.055), transparent 20%),
+        #000;
+    }
+
+    .gate::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: .42;
+      background-image:
+        radial-gradient(circle, rgba(255,222,113,.9) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(218,154,28,.7) 0 1px, transparent 1.6px);
+      background-size: 115px 115px, 173px 173px;
+      background-position: 13px 29px, 73px 51px;
+      mask-image: radial-gradient(ellipse at center, #000 0%, transparent 76%);
     }
 
     .gate::before {
@@ -184,10 +170,10 @@
       inset: 0;
       z-index: -1;
       background:
-        linear-gradient(90deg, transparent 0 47%, rgba(255,255,255,.95) 50%, transparent 53%),
-        radial-gradient(ellipse at center, rgba(255,255,255,.95), rgba(115,198,255,.45) 38%, transparent 68%);
-      opacity: .72;
-      transform: scaleX(.08);
+        linear-gradient(90deg, transparent 0 47%, rgba(255,226,134,.95) 50%, transparent 53%),
+        radial-gradient(ellipse at center, rgba(255,240,177,.95), rgba(186,120,17,.35) 38%, transparent 68%);
+      opacity: .4;
+      transform: scaleX(.04);
       transition: transform var(--door-time) cubic-bezier(.77,0,.18,1), opacity .35s ease;
     }
 
@@ -202,10 +188,9 @@
       bottom: 0;
       width: 50.1%;
       background:
-        linear-gradient(90deg, rgba(255,255,255,.08), transparent 16%, transparent 84%, rgba(0,0,0,.28)),
-        radial-gradient(circle at 50% 45%, rgba(69,184,255,.2), transparent 48%),
-        linear-gradient(180deg, #183a57 0%, #0e2942 45%, #081a2b 100%);
-      box-shadow: inset 0 0 45px rgba(116,203,255,.16);
+        linear-gradient(90deg, rgba(255,215,111,.025), transparent 17%, transparent 83%, rgba(255,215,111,.04)),
+        radial-gradient(circle at 50% 45%, rgba(181,112,9,.05), transparent 48%),
+        #000;
       transition: transform var(--door-time) cubic-bezier(.77,0,.18,1), filter .45s ease;
       will-change: transform;
     }
@@ -215,44 +200,32 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 8px;
-      background: linear-gradient(180deg, rgba(226,247,255,.9), var(--blue), rgba(226,247,255,.55));
-      box-shadow: 0 0 16px rgba(69,184,255,.95), 0 0 38px rgba(69,184,255,.65);
+      width: 3px;
+      background: linear-gradient(180deg, transparent, var(--gold-light), var(--gold), transparent);
+      box-shadow: 0 0 14px rgba(255,202,58,.9), 0 0 34px rgba(255,184,28,.55);
     }
 
-    .door-left {
-      left: 0;
-      border-right: 2px solid rgba(183,229,255,.85);
-      box-shadow: inset -26px 0 42px rgba(0,0,0,.42), 8px 0 24px rgba(69,184,255,.28);
-    }
-
-    .door-left::after { right: -4px; }
-
-    .door-right {
-      right: 0;
-      border-left: 2px solid rgba(183,229,255,.85);
-      box-shadow: inset 26px 0 42px rgba(0,0,0,.42), -8px 0 24px rgba(69,184,255,.28);
-    }
-
-    .door-right::after { left: -4px; }
+    .door-left { left: 0; box-shadow: inset -18px 0 34px rgba(215,165,38,.03); }
+    .door-left::after { right: -1px; }
+    .door-right { right: 0; box-shadow: inset 18px 0 34px rgba(215,165,38,.03); }
+    .door-right::after { left: -1px; }
 
     .gate-button {
       position: relative;
       z-index: 2;
       appearance: none;
+      width: min(92vw, 980px);
+      padding: 0;
       border: 0;
       background: transparent;
-      color: inherit;
-      padding: 1rem;
       cursor: pointer;
-      width: min(84vw, 860px);
       transition: transform .25s ease, filter .25s ease, opacity .55s ease;
     }
 
     .gate-button:hover,
     .gate-button:focus-visible {
-      transform: scale(1.025);
-      filter: brightness(1.08);
+      transform: scale(1.012);
+      filter: brightness(1.06);
       outline: none;
     }
 
@@ -261,21 +234,22 @@
       width: 100%;
       height: auto;
       mix-blend-mode: normal;
-      filter: drop-shadow(0 0 14px rgba(69,184,255,.48))
-              drop-shadow(0 0 42px rgba(69,184,255,.2));
+      filter:
+        drop-shadow(0 0 10px rgba(246,190,55,.14))
+        drop-shadow(0 0 34px rgba(160,93,0,.08));
       user-select: none;
       -webkit-user-drag: none;
     }
 
     .spark {
       position: absolute;
-      right: 7%;
+      right: 10%;
       top: 42%;
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #dff6ff;
-      box-shadow: 0 0 10px #fff, 0 0 28px var(--blue), 0 0 65px var(--blue);
+      background: #fff9d8;
+      box-shadow: 0 0 10px #fff, 0 0 28px var(--gold), 0 0 65px var(--gold);
       opacity: 0;
       transform: scale(.2);
     }
@@ -308,19 +282,14 @@
       50% { transform: scale(1.025); }
     }
 
-    @keyframes rays {
-      to { transform: rotate(360deg); }
-    }
-
-    @keyframes glow {
-      0%, 100% { opacity: .65; transform: scale(.96); }
-      50% { opacity: 1; transform: scale(1.06); }
+    @media (max-width: 700px) {
+      .gate-button { width: min(96vw, 760px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .door, .gate-button, .tile, .gate::before { transition: none !important; }
       .spark { display: none; }
-      .placeholder-number, .placeholder::before, .placeholder::after { animation: none !important; }
+      .placeholder-number { animation: none !important; }
     }
   </style>
 </head>
@@ -367,7 +336,7 @@
     <div class="door door-left" aria-hidden="true"></div>
     <div class="door door-right" aria-hidden="true"></div>
     <button class="gate-button" id="gate-button" type="button" aria-controls="main-content">
-      <img class="gate-logo" src="assets/prilliant-logo-transparent.svg" alt="Prilliante Familie" width="500" height="334">
+      <img class="gate-logo" src="assets/prilliant-logo-original.svg" alt="Prilliante Familie" width="1536" height="1024">
       <span class="spark" aria-hidden="true"></span>
     </button>
   </div>
