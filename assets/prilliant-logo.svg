@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 520" role="img" aria-labelledby="title desc">
+  <title id="title">Prilliant</title>
+  <desc id="desc">Neonblauer Prilliant-Schriftzug mit großer elliptischer Linie und Funkeln.</desc>
+  <defs>
+    <linearGradient id="neon" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#73d4ff"/>
+      <stop offset="0.55" stop-color="#34b5ff"/>
+      <stop offset="1" stop-color="#0d92ff"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="7" result="blur1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="starGlow" x="-300%" y="-300%" width="600%" height="600%">
+      <feGaussianBlur stdDeviation="10" result="s"/>
+      <feMerge><feMergeNode in="s"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <g fill="none" stroke="url(#neon)" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
+    <path d="M228 366
+             C95 320, 88 185, 243 125
+             C430 53, 930 62, 1145 149
+             C1272 201, 1290 287, 1197 348
+             C1068 433, 621 456, 324 398"
+          stroke-width="10"/>
+    <path d="M260 370
+             C220 329, 218 251, 260 189
+             C302 126, 379 110, 453 128"
+          stroke-width="8" opacity=".95"/>
+  </g>
+
+  <text x="700" y="326"
+        text-anchor="middle"
+        font-family="Segoe Script, Brush Script MT, Lucida Handwriting, cursive"
+        font-size="205"
+        font-style="italic"
+        font-weight="600"
+        letter-spacing="-10"
+        fill="url(#neon)"
+        filter="url(#glow)">Prilliant</text>
+
+  <g transform="translate(1194 191)" stroke="#bfeaff" stroke-linecap="round" filter="url(#starGlow)">
+    <path d="M0 -42 V42" stroke-width="10"/>
+    <path d="M-42 0 H42" stroke-width="10"/>
+    <path d="M-25 -25 L25 25" stroke-width="5" opacity=".85"/>
+    <path d="M25 -25 L-25 25" stroke-width="5" opacity=".85"/>
+  </g>
+</svg>
