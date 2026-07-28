@@ -380,6 +380,8 @@
       const tiles = document.querySelectorAll("[data-placeholder]");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+      history.replaceState({ view: "overview" }, "", window.location.pathname + window.location.search);
+
       const openGate = () => {
         if (gate.classList.contains("open")) return;
         if (reducedMotion) {
@@ -392,13 +394,24 @@
 
       const showPlaceholder = event => {
         event.preventDefault();
+        if (!placeholder.classList.contains("visible")) {
+          history.pushState({ view: "placeholder" }, "", "#bereich");
+        }
         placeholder.classList.add("visible");
         placeholder.focus();
       };
 
       const hidePlaceholder = () => {
+        if (history.state && history.state.view === "placeholder") {
+          history.back();
+          return;
+        }
         placeholder.classList.remove("visible");
       };
+
+      window.addEventListener("popstate", () => {
+        placeholder.classList.remove("visible");
+      });
 
       button.addEventListener("click", openGate);
       button.addEventListener("keydown", event => {
