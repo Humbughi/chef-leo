@@ -12,7 +12,7 @@
       --blue: #45b8ff;
       --text: #eef7ff;
       --muted: #9fb4c6;
-      --door-time: 1.25s;
+      --door-time: 1.55s;
     }
 
     * { box-sizing: border-box; }
@@ -124,10 +124,29 @@
       z-index: 100;
       display: grid;
       place-items: center;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at 50% 48%, rgba(255, 255, 255, .96) 0%, rgba(191, 229, 255, .92) 22%, rgba(71, 160, 224, .72) 48%, #0a2035 78%, #05070d 100%);
       cursor: pointer;
       overflow: hidden;
       isolation: isolate;
+    }
+
+    .gate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, transparent 0 47%, rgba(255, 255, 255, .95) 50%, transparent 53%),
+        radial-gradient(ellipse at center, rgba(255, 255, 255, .95), rgba(115, 198, 255, .45) 38%, transparent 68%);
+      opacity: .72;
+      transform: scaleX(.08);
+      transition: transform var(--door-time) cubic-bezier(.77, 0, .18, 1), opacity .35s ease;
+    }
+
+    .gate.open::before {
+      transform: scaleX(1);
+      opacity: 1;
     }
 
     .door {
@@ -136,33 +155,53 @@
       bottom: 0;
       width: 50.1%;
       background:
-        radial-gradient(circle at 50% 45%, rgba(49, 153, 255, .11), transparent 42%),
-        linear-gradient(180deg, #070b14, #04060b);
-      transition: transform var(--door-time) cubic-bezier(.77, 0, .18, 1);
+        linear-gradient(90deg, rgba(255,255,255,.08), transparent 16%, transparent 84%, rgba(0,0,0,.28)),
+        radial-gradient(circle at 50% 45%, rgba(69, 184, 255, .2), transparent 48%),
+        linear-gradient(180deg, #183a57 0%, #0e2942 45%, #081a2b 100%);
+      box-shadow: inset 0 0 45px rgba(116, 203, 255, .16);
+      transition: transform var(--door-time) cubic-bezier(.77, 0, .18, 1), filter .45s ease;
       will-change: transform;
+    }
+
+    .door::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: linear-gradient(180deg, rgba(226, 247, 255, .9), var(--blue), rgba(226, 247, 255, .55));
+      box-shadow: 0 0 16px rgba(69, 184, 255, .95), 0 0 38px rgba(69, 184, 255, .65);
     }
 
     .door-left {
       left: 0;
-      border-right: 1px solid rgba(69, 184, 255, .11);
+      border-right: 2px solid rgba(183, 229, 255, .85);
+      box-shadow: inset -26px 0 42px rgba(0, 0, 0, .42), 8px 0 24px rgba(69, 184, 255, .28);
     }
+
+    .door-left::after { right: -4px; }
 
     .door-right {
       right: 0;
-      border-left: 1px solid rgba(69, 184, 255, .11);
+      border-left: 2px solid rgba(183, 229, 255, .85);
+      box-shadow: inset 26px 0 42px rgba(0, 0, 0, .42), -8px 0 24px rgba(69, 184, 255, .28);
     }
+
+    .door-right::after { left: -4px; }
 
     .gate-button {
       position: relative;
       z-index: 2;
       appearance: none;
       border: 0;
-      background: transparent;
+      background: rgba(4, 16, 28, .18);
+      border-radius: 28px;
       color: inherit;
-      padding: 1rem;
+      padding: 1rem 1.5rem;
       cursor: pointer;
       width: min(84vw, 860px);
-      transition: transform .25s ease, filter .25s ease, opacity .45s ease;
+      backdrop-filter: blur(3px);
+      transition: transform .25s ease, filter .25s ease, opacity .55s ease;
     }
 
     .gate-button:hover,
@@ -176,8 +215,8 @@
       display: block;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 0 14px rgba(69, 184, 255, .48))
-              drop-shadow(0 0 42px rgba(69, 184, 255, .2));
+      filter: drop-shadow(0 0 14px rgba(69, 184, 255, .7))
+              drop-shadow(0 0 48px rgba(69, 184, 255, .38));
       user-select: none;
       -webkit-user-drag: none;
     }
@@ -186,25 +225,25 @@
       position: absolute;
       right: 7%;
       top: 42%;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      background: #dff6ff;
-      box-shadow: 0 0 10px #fff, 0 0 28px var(--blue), 0 0 65px var(--blue);
+      background: #fff;
+      box-shadow: 0 0 14px #fff, 0 0 36px var(--blue), 0 0 90px var(--blue);
       opacity: 0;
       transform: scale(.2);
     }
 
     .gate.open .spark {
-      animation: spark-flash .55s ease-out forwards;
+      animation: spark-flash .75s ease-out forwards;
     }
 
-    .gate.open .door-left { transform: translateX(-101%); }
-    .gate.open .door-right { transform: translateX(101%); }
+    .gate.open .door-left { transform: translateX(-101%); filter: brightness(1.22); }
+    .gate.open .door-right { transform: translateX(101%); filter: brightness(1.22); }
 
     .gate.open .gate-button {
       opacity: 0;
-      transform: scale(.95);
+      transform: scale(.92);
       pointer-events: none;
     }
 
@@ -212,12 +251,12 @@
 
     @keyframes spark-flash {
       0% { opacity: 0; transform: scale(.2); }
-      35% { opacity: 1; transform: scale(2.6); }
-      100% { opacity: 0; transform: scale(5.2); }
+      30% { opacity: 1; transform: scale(3.2); }
+      100% { opacity: 0; transform: scale(7); }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .door, .gate-button, .tile { transition: none !important; }
+      .door, .gate-button, .tile, .gate::before { transition: none !important; }
       .spark { display: none; }
     }
   </style>
@@ -285,7 +324,7 @@
           return;
         }
         gate.classList.add("open");
-        window.setTimeout(() => gate.classList.add("done"), 1400);
+        window.setTimeout(() => gate.classList.add("done"), 1750);
       };
 
       const showPlaceholder = event => {
