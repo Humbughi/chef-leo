@@ -92,6 +92,32 @@
       line-height: 1.45;
     }
 
+    .placeholder {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(69, 184, 255, .15), transparent 35%),
+        #05070d;
+      cursor: pointer;
+    }
+
+    .placeholder.visible { display: grid; }
+
+    .placeholder-number {
+      font-size: clamp(10rem, 45vw, 34rem);
+      line-height: .8;
+      font-weight: 900;
+      letter-spacing: -.09em;
+      color: var(--text);
+      text-shadow:
+        0 0 24px rgba(69, 184, 255, .65),
+        0 0 80px rgba(69, 184, 255, .3);
+      user-select: none;
+    }
+
     .gate {
       position: fixed;
       inset: 0;
@@ -200,36 +226,40 @@
   <main class="content" id="main-content">
     <div class="content-inner">
       <h1>Willkommen bei Prilliant</h1>
-      <p>Die Themenbereiche sind vorbereitet. Die Inhalte wachsen Schritt für Schritt.</p>
+      <p>Persönliche Projekte, Ideen und Entdeckungen.</p>
 
       <section class="tiles" aria-label="Bereiche">
-        <a class="tile" href="#">
+        <a class="tile" href="#" data-placeholder>
           <strong>Prilliante Rezepte</strong>
           <span>Rezepte, Küchentechnik und kulinarische Experimente.</span>
         </a>
-        <a class="tile" href="#">
-          <strong>Am Nasenberg</strong>
+        <a class="tile" href="#" data-placeholder>
+          <strong>Prillianter Nasenberg</strong>
           <span>Garten, Natur, Ausbau und das Leben am Hang.</span>
         </a>
-        <a class="tile" href="#">
-          <strong>Fotografie</strong>
+        <a class="tile" href="#" data-placeholder>
+          <strong>Prilliante Fotografie</strong>
           <span>Bilder, Fotobücher und visuelle Geschichten.</span>
         </a>
-        <a class="tile" href="#">
-          <strong>Projekte</strong>
+        <a class="tile" href="#" data-placeholder>
+          <strong>Prilliante Projekte</strong>
           <span>Technische und kreative Vorhaben im Überblick.</span>
         </a>
-        <a class="tile" href="#">
-          <strong>Wissenssammlung</strong>
+        <a class="tile" href="#" data-placeholder>
+          <strong>Prilliante Wissenssammlung</strong>
           <span>Notizen, Ideen und Fundstücke aus vielen Bereichen.</span>
         </a>
-        <a class="tile" href="#">
-          <strong>GIS &amp; ArcGIS</strong>
+        <a class="tile" href="#" data-placeholder>
+          <strong>Prilliantes GIS-Wissen</strong>
           <span>Geoinformatik, Netzwerkanalysen, Werkzeuge und Projekte.</span>
         </a>
       </section>
     </div>
   </main>
+
+  <div class="placeholder" id="placeholder" role="button" tabindex="0" aria-label="Zurück zur Übersicht">
+    <div class="placeholder-number">42</div>
+  </div>
 
   <div class="gate" id="gate" aria-label="Prilliant betreten">
     <div class="door door-left" aria-hidden="true"></div>
@@ -244,6 +274,8 @@
     (() => {
       const gate = document.getElementById("gate");
       const button = document.getElementById("gate-button");
+      const placeholder = document.getElementById("placeholder");
+      const tiles = document.querySelectorAll("[data-placeholder]");
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const openGate = () => {
@@ -256,11 +288,30 @@
         window.setTimeout(() => gate.classList.add("done"), 1400);
       };
 
+      const showPlaceholder = event => {
+        event.preventDefault();
+        placeholder.classList.add("visible");
+        placeholder.focus();
+      };
+
+      const hidePlaceholder = () => {
+        placeholder.classList.remove("visible");
+      };
+
       button.addEventListener("click", openGate);
       button.addEventListener("keydown", event => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
           openGate();
+        }
+      });
+
+      tiles.forEach(tile => tile.addEventListener("click", showPlaceholder));
+      placeholder.addEventListener("click", hidePlaceholder);
+      placeholder.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " " || event.key === "Escape") {
+          event.preventDefault();
+          hidePlaceholder();
         }
       });
     })();
