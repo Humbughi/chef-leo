@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070d">
+  <meta name="description" content="Prilliant – persönliche Projekte, Ideen und Entdeckungen.">
+  <title>Prilliant</title>
+  <style>
+    :root {
+      --bg: #05070d;
+      --blue: #45b8ff;
+      --text: #eef7ff;
+      --muted: #9fb4c6;
+      --door-time: 1.25s;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+                   BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .content {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 3rem 1.25rem;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(44, 128, 255, 0.12), transparent 35%),
+        linear-gradient(180deg, #070a12 0%, #05070d 100%);
+    }
+
+    .content-inner { width: min(100%, 1100px); }
+
+    .content h1 {
+      margin: 0 0 .7rem;
+      font-size: clamp(2rem, 6vw, 4.8rem);
+      letter-spacing: -.04em;
+    }
+
+    .content p {
+      margin: 0 0 2.3rem;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+
+    .tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .tile {
+      display: block;
+      min-height: 150px;
+      padding: 1.25rem;
+      border: 1px solid rgba(123, 194, 255, .22);
+      border-radius: 18px;
+      color: inherit;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .025);
+      transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    }
+
+    .tile:hover,
+    .tile:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(69, 184, 255, .65);
+      background: rgba(69, 184, 255, .06);
+      outline: none;
+    }
+
+    .tile strong {
+      display: block;
+      margin-bottom: .45rem;
+      font-size: 1.15rem;
+    }
+
+    .tile span {
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .gate {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      cursor: pointer;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50.1%;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(49, 153, 255, .11), transparent 42%),
+        linear-gradient(180deg, #070b14, #04060b);
+      transition: transform var(--door-time) cubic-bezier(.77, 0, .18, 1);
+      will-change: transform;
+    }
+
+    .door-left {
+      left: 0;
+      border-right: 1px solid rgba(69, 184, 255, .11);
+    }
+
+    .door-right {
+      right: 0;
+      border-left: 1px solid rgba(69, 184, 255, .11);
+    }
+
+    .gate-button {
+      position: relative;
+      z-index: 2;
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 1rem;
+      cursor: pointer;
+      width: min(84vw, 860px);
+      transition: transform .25s ease, filter .25s ease, opacity .45s ease;
+    }
+
+    .gate-button:hover,
+    .gate-button:focus-visible {
+      transform: scale(1.025);
+      filter: brightness(1.12);
+      outline: none;
+    }
+
+    .gate-logo {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 14px rgba(69, 184, 255, .48))
+              drop-shadow(0 0 42px rgba(69, 184, 255, .2));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .enter-hint {
+      margin-top: 1.1rem;
+      color: rgba(220, 240, 255, .68);
+      font-size: .88rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+
+    .spark {
+      position: absolute;
+      right: 7%;
+      top: 42%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #dff6ff;
+      box-shadow: 0 0 10px #fff, 0 0 28px var(--blue), 0 0 65px var(--blue);
+      opacity: 0;
+      transform: scale(.2);
+    }
+
+    .gate.open .spark {
+      animation: spark-flash .55s ease-out forwards;
+    }
+
+    .gate.open .door-left { transform: translateX(-101%); }
+    .gate.open .door-right { transform: translateX(101%); }
+
+    .gate.open .gate-button {
+      opacity: 0;
+      transform: scale(.95);
+      pointer-events: none;
+    }
+
+    .gate.done { display: none; }
+
+    @keyframes spark-flash {
+      0% { opacity: 0; transform: scale(.2); }
+      35% { opacity: 1; transform: scale(2.6); }
+      100% { opacity: 0; transform: scale(5.2); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .door, .gate-button, .tile { transition: none !important; }
+      .spark { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="content" id="main-content">
+    <div class="content-inner">
+      <h1>Willkommen bei Prilliant</h1>
+      <p>Die Themenbereiche sind vorbereitet. Die Inhalte wachsen Schritt für Schritt.</p>
+
+      <section class="tiles" aria-label="Bereiche">
+        <a class="tile" href="#">
+          <strong>GIS &amp; ArcGIS</strong>
+          <span>Geoinformatik, Netzwerkanalysen, Werkzeuge und Projekte.</span>
+        </a>
+        <a class="tile" href="#">
+          <strong>Chef Leo</strong>
+          <span>Rezepte, Küchentechnik und kulinarische Experimente.</span>
+        </a>
+        <a class="tile" href="#">
+          <strong>Am Nasenberg</strong>
+          <span>Garten, Natur, Ausbau und das Leben am Hang.</span>
+        </a>
+        <a class="tile" href="#">
+          <strong>Fotografie</strong>
+          <span>Bilder, Fotobücher und visuelle Geschichten.</span>
+        </a>
+        <a class="tile" href="#">
+          <strong>Projekte</strong>
+          <span>Technische und kreative Vorhaben im Überblick.</span>
+        </a>
+        <a class="tile" href="#">
+          <strong>Wissenssammlung</strong>
+          <span>Notizen, Ideen und Fundstücke aus vielen Bereichen.</span>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <div class="gate" id="gate" aria-label="Prilliant betreten">
+    <div class="door door-left" aria-hidden="true"></div>
+    <div class="door door-right" aria-hidden="true"></div>
+    <button class="gate-button" id="gate-button" type="button" aria-controls="main-content">
+      <img class="gate-logo" src="assets/prilliant-logo.svg" alt="Prilliant" width="1200" height="430">
+      <span class="spark" aria-hidden="true"></span>
+      <div class="enter-hint">Klicken zum Eintreten</div>
+    </button>
+  </div>
+
+  <script>
+    (() => {
+      const gate = document.getElementById("gate");
+      const button = document.getElementById("gate-button");
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const openGate = () => {
+        if (gate.classList.contains("open")) return;
+        if (reducedMotion) {
+          gate.classList.add("done");
+          return;
+        }
+        gate.classList.add("open");
+        window.setTimeout(() => gate.classList.add("done"), 1400);
+      };
+
+      button.addEventListener("click", openGate);
+      button.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openGate();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
