@@ -13,112 +13,32 @@
     :root{--gold:#d7a526;--gold-light:#fff0a6;--ivory:#f5eedc;--muted:#b9ad91;--font:"Manrope",ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%;background:#000;color:var(--ivory);font-family:var(--font)}
-    body{min-height:100vh;overflow-x:hidden}
-    button,a{font:inherit}
+    body{min-height:100vh;overflow-x:hidden}button,a{font:inherit}
     .content{min-height:100vh;padding:0 1.25rem 3rem;background:radial-gradient(circle at 82% 5%,rgba(215,165,38,.12),transparent 27%),radial-gradient(circle at 12% 70%,rgba(122,73,0,.09),transparent 30%),linear-gradient(180deg,#020201 0%,#080704 48%,#000 100%)}
     .site-header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:1rem;width:min(100%,1180px);margin:0 auto;padding:.8rem 0;border-bottom:1px solid rgba(215,165,38,.28);background:rgba(0,0,0,.82);backdrop-filter:blur(18px)}
-    .brand{display:flex;align-items:center;gap:.8rem;border:0;padding:0;color:var(--ivory);background:transparent;cursor:pointer}
-    .brand img{width:74px;height:50px;object-fit:contain;filter:drop-shadow(0 0 2px rgba(255,249,205,.95)) drop-shadow(0 0 7px rgba(255,210,72,.78)) drop-shadow(0 0 17px rgba(215,145,18,.38))}
-    .brand span{font-size:1rem;font-weight:600;letter-spacing:.18em}
-    .main-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.25rem}
-    .main-nav button{border:0;border-radius:999px;padding:.58rem .78rem;color:#cfc5ae;background:transparent;cursor:pointer;font-size:.9rem;font-weight:500;transition:.2s ease}
-    .main-nav button:hover,.main-nav button:focus-visible{color:var(--gold-light);background:rgba(215,165,38,.09);outline:none}
-    .content-inner{width:min(100%,1180px);margin:0 auto;padding-top:4rem}
-    .overview-hero{display:grid;grid-template-columns:1.45fr .55fr;align-items:end;gap:2rem;margin-bottom:3rem}
-    .eyebrow{margin:0 0 .75rem;color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:.23em;text-transform:uppercase}
-    h1{margin:0;max-width:850px;font-size:clamp(2.8rem,7vw,6.2rem);font-weight:500;line-height:.98;letter-spacing:-.045em;background:linear-gradient(120deg,#fff8dc,#d7a526 44%,#fff0a6 66%,#835400);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .lead{margin:1.35rem 0 0;max-width:720px;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);line-height:1.7}
-    .hero-42{justify-self:end;font-size:clamp(7rem,18vw,14rem);line-height:.7;font-weight:800;letter-spacing:-.12em;color:transparent;-webkit-text-stroke:1px rgba(215,165,38,.55);filter:drop-shadow(0 0 28px rgba(215,165,38,.2));transform:rotate(-5deg);user-select:none}
-    .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}
-    .tile{position:relative;min-height:220px;overflow:hidden;padding:1.5rem;border:1px solid rgba(215,165,38,.23);border-radius:22px;color:var(--ivory);text-align:left;background:radial-gradient(circle at 100% 0%,rgba(215,165,38,.12),transparent 42%),linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));box-shadow:0 18px 50px rgba(0,0,0,.38);cursor:pointer;transition:.25s ease}
-    .tile::after{content:"42";position:absolute;right:-8px;bottom:-28px;font-size:7.2rem;font-weight:800;letter-spacing:-.12em;color:rgba(215,165,38,.07);transform:rotate(-9deg)}
-    .tile:hover,.tile:focus-visible{transform:translateY(-6px);border-color:rgba(255,224,126,.62);outline:none}
-    .tile small{display:block;margin-bottom:2.8rem;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
-    .tile strong{display:block;margin-bottom:.65rem;font-size:1.45rem;font-weight:600;line-height:1.2}
-    .tile span{display:block;max-width:92%;color:var(--muted);font-size:.97rem;line-height:1.6}
-    .site-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;width:min(100%,1180px);margin:4rem auto 0;padding-top:1.4rem;border-top:1px solid rgba(215,165,38,.18);color:#827965;font-size:.75rem;font-weight:600;letter-spacing:.13em}
-    .site-footer a{color:#a89a79;text-decoration:none}
-    .site-footer a:hover{color:var(--gold-light)}
-    .section-page{position:fixed;inset:0;z-index:60;display:none;overflow-y:auto;background:radial-gradient(circle at 82% 12%,rgba(215,165,38,.14),transparent 28%),linear-gradient(180deg,#030201,#0a0804 52%,#000)}
-    .section-page.visible{display:block}
-    .section-shell{width:min(100% - 2rem,1180px);margin:0 auto;padding-bottom:4rem}
-    .section-topbar{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;border-bottom:1px solid rgba(215,165,38,.24);background:rgba(0,0,0,.78);backdrop-filter:blur(18px)}
-    .back-button{border:1px solid rgba(215,165,38,.35);border-radius:999px;padding:.62rem 1rem;color:var(--gold-light);background:rgba(215,165,38,.06);cursor:pointer}
-    .section-mark{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.23em;text-transform:uppercase}
-    .section-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(220px,.55fr);align-items:center;gap:2rem;min-height:72vh;padding:4rem 0 2rem}
-    .section-hero h2{margin:0;font-size:clamp(3rem,8vw,6.8rem);font-weight:500;line-height:.96;letter-spacing:-.05em}
-    .section-hero p{max-width:680px;margin:1.4rem 0 0;color:var(--muted);font-size:1.1rem;line-height:1.72}
-    .wild-42{justify-self:center;font-size:clamp(9rem,24vw,18rem);line-height:.72;font-weight:800;letter-spacing:-.14em;background:linear-gradient(120deg,#6f4500,#fff1a8 28%,#dcae32 52%,#fff8cf 65%,#7d4d00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px rgba(215,165,38,.34));transform:rotate(-4deg)}
-    .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,rgba(209,145,22,.12),transparent 58%),#000;transition:opacity .55s ease}
-    .gate-button{appearance:none;width:min(92vw,980px);padding:0;border:0;background:transparent;cursor:pointer}
-    .gate-logo{display:block;width:100%;height:auto;filter:drop-shadow(0 0 2px rgba(255,252,219,1)) drop-shadow(0 0 10px rgba(255,226,112,.98)) drop-shadow(0 0 32px rgba(230,168,39,.78))}
-    .gate.open{opacity:0;pointer-events:none}
+    .brand{display:flex;align-items:center;gap:.8rem;border:0;padding:0;color:var(--ivory);background:transparent;cursor:pointer}.brand img{width:74px;height:50px;object-fit:contain;filter:drop-shadow(0 0 2px rgba(255,249,205,.95)) drop-shadow(0 0 7px rgba(255,210,72,.78)) drop-shadow(0 0 17px rgba(215,145,18,.38))}.brand span{font-size:1rem;font-weight:600;letter-spacing:.18em}
+    .main-nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.25rem}.main-nav button{border:0;border-radius:999px;padding:.58rem .78rem;color:#cfc5ae;background:transparent;cursor:pointer;font-size:.9rem;font-weight:500;transition:.2s ease}.main-nav button:hover,.main-nav button:focus-visible{color:var(--gold-light);background:rgba(215,165,38,.09);outline:none}
+    .content-inner{width:min(100%,1180px);margin:0 auto;padding-top:4rem}.overview-hero{display:grid;grid-template-columns:1.45fr .55fr;align-items:end;gap:2rem;margin-bottom:3rem}.eyebrow{margin:0 0 .75rem;color:var(--gold);font-size:.73rem;font-weight:700;letter-spacing:.23em;text-transform:uppercase}
+    h1{margin:0;max-width:850px;font-size:clamp(2.8rem,7vw,6.2rem);font-weight:500;line-height:.98;letter-spacing:-.045em;background:linear-gradient(120deg,#fff8dc,#d7a526 44%,#fff0a6 66%,#835400);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.lead{margin:1.35rem 0 0;max-width:720px;color:var(--muted);font-size:clamp(1rem,2vw,1.2rem);line-height:1.7}.hero-42{justify-self:end;font-size:clamp(7rem,18vw,14rem);line-height:.7;font-weight:800;letter-spacing:-.12em;color:transparent;-webkit-text-stroke:1px rgba(215,165,38,.55);filter:drop-shadow(0 0 28px rgba(215,165,38,.2));transform:rotate(-5deg);user-select:none}
+    .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.tile{position:relative;min-height:220px;overflow:hidden;padding:1.5rem;border:1px solid rgba(215,165,38,.23);border-radius:22px;color:var(--ivory);text-align:left;background:radial-gradient(circle at 100% 0%,rgba(215,165,38,.12),transparent 42%),linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008));box-shadow:0 18px 50px rgba(0,0,0,.38);cursor:pointer;transition:.25s ease}.tile::after{content:"42";position:absolute;right:-8px;bottom:-28px;font-size:7.2rem;font-weight:800;letter-spacing:-.12em;color:rgba(215,165,38,.07);transform:rotate(-9deg)}.tile:hover,.tile:focus-visible{transform:translateY(-6px);border-color:rgba(255,224,126,.62);outline:none}.tile small{display:block;margin-bottom:2.8rem;color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase}.tile strong{display:block;margin-bottom:.65rem;font-size:1.45rem;font-weight:600;line-height:1.2}.tile span{display:block;max-width:92%;color:var(--muted);font-size:.97rem;line-height:1.6}
+    .site-footer{display:grid;grid-template-columns:1fr auto;align-items:end;gap:1.25rem;width:min(100%,1180px);margin:4rem auto 0;padding-top:1.5rem;border-top:1px solid rgba(215,165,38,.18);color:#827965}.footer-brand{display:block;margin-bottom:.45rem;color:var(--gold-light);font-size:.9rem;font-weight:700;letter-spacing:.2em}.footer-copy,.footer-tagline{font-size:.72rem;font-weight:600;letter-spacing:.11em;line-height:1.7}.footer-links{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.8rem;font-size:.75rem;font-weight:600;letter-spacing:.08em}.site-footer a{color:#a89a79;text-decoration:none;transition:.2s ease}.site-footer a:hover,.site-footer a:focus-visible{color:var(--gold-light);outline:none}
+    .section-page{position:fixed;inset:0;z-index:60;display:none;overflow-y:auto;background:radial-gradient(circle at 82% 12%,rgba(215,165,38,.14),transparent 28%),linear-gradient(180deg,#030201,#0a0804 52%,#000)}.section-page.visible{display:block}.section-shell{width:min(100% - 2rem,1180px);margin:0 auto;padding-bottom:4rem}.section-topbar{position:sticky;top:0;display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;border-bottom:1px solid rgba(215,165,38,.24);background:rgba(0,0,0,.78);backdrop-filter:blur(18px)}.back-button{border:1px solid rgba(215,165,38,.35);border-radius:999px;padding:.62rem 1rem;color:var(--gold-light);background:rgba(215,165,38,.06);cursor:pointer}.section-mark{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.23em;text-transform:uppercase}.section-hero{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(220px,.55fr);align-items:center;gap:2rem;min-height:68vh;padding:4rem 0 2rem}.section-hero h2{margin:0;font-size:clamp(3rem,8vw,6.8rem);font-weight:500;line-height:.96;letter-spacing:-.05em}.section-hero p{max-width:680px;margin:1.4rem 0 0;color:var(--muted);font-size:1.1rem;line-height:1.72}.wild-42{justify-self:center;font-size:clamp(9rem,24vw,18rem);line-height:.72;font-weight:800;letter-spacing:-.14em;background:linear-gradient(120deg,#6f4500,#fff1a8 28%,#dcae32 52%,#fff8cf 65%,#7d4d00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px rgba(215,165,38,.34));transform:rotate(-4deg)}
+    .home-42{display:grid;place-items:center;width:74px;height:74px;margin:1rem auto 0;border:1px solid rgba(215,165,38,.34);border-radius:50%;color:transparent;background:radial-gradient(circle,rgba(215,165,38,.12),transparent 68%);-webkit-text-stroke:1px var(--gold-light);font-size:2.25rem;font-weight:800;letter-spacing:-.12em;text-decoration:none;filter:drop-shadow(0 0 12px rgba(215,165,38,.32));transition:.25s ease}.home-42:hover,.home-42:focus-visible{transform:rotate(-7deg) scale(1.08);border-color:var(--gold-light);filter:drop-shadow(0 0 22px rgba(215,165,38,.6));outline:none}
+    .gate{position:fixed;inset:0;z-index:100;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,rgba(209,145,22,.12),transparent 58%),#000;transition:opacity .55s ease}.gate-button{appearance:none;width:min(92vw,980px);padding:0;border:0;background:transparent;cursor:pointer}.gate-logo{display:block;width:100%;height:auto;filter:drop-shadow(0 0 2px rgba(255,252,219,1)) drop-shadow(0 0 10px rgba(255,226,112,.98)) drop-shadow(0 0 32px rgba(230,168,39,.78))}.gate.open{opacity:0;pointer-events:none}
     @media(max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.main-nav{display:none}}
-    @media(max-width:650px){.overview-hero,.section-hero{grid-template-columns:1fr}.tiles{grid-template-columns:1fr}.hero-42,.wild-42{justify-self:start}.brand span{display:none}}
+    @media(max-width:650px){.overview-hero,.section-hero{grid-template-columns:1fr}.tiles{grid-template-columns:1fr}.hero-42,.wild-42{justify-self:start}.brand span{display:none}.site-footer{grid-template-columns:1fr}.footer-links{justify-content:flex-start}}
   </style>
 </head>
 <body>
   <main class="content" id="main-content">
-    <header class="site-header">
-      <button class="brand" type="button" data-home aria-label="Zur Übersicht"><img src="assets/prilliant-logo-original.svg" alt=""><span>PRILLIANT</span></button>
-      <nav class="main-nav" aria-label="Hauptnavigation">
-        <button type="button" data-section="recipes">Rezepte</button>
-        <button type="button" data-section="garden">Nasenberg</button>
-        <button type="button" data-section="photo">Fotografie</button>
-        <button type="button" data-section="projects">Projekte</button>
-        <button type="button" data-section="knowledge">Wissen</button>
-      </nav>
-    </header>
-    <div class="content-inner">
-      <section class="overview-hero">
-        <div><p class="eyebrow">Prilliante Familie</p><h1>Ideen mit Charakter.</h1><p class="lead">Rezepte, Natur, Fotografie, Projekte und Wissen – persönlich gesammelt, sorgfältig gestaltet und mit einer gewissen Vorliebe für die Zahl 42.</p></div>
-        <div class="hero-42" aria-hidden="true">42</div>
-      </section>
-      <section class="tiles" aria-label="Bereiche">
-        <button class="tile" type="button" data-section="recipes"><small>01 · Genuss</small><strong>Prilliante Rezepte</strong><span>Rezepte, Küchentechnik und kulinarische Experimente.</span></button>
-        <button class="tile" type="button" data-section="garden"><small>02 · Natur</small><strong>Prillianter Nasenberg</strong><span>Garten, Natur, Ausbau und das Leben am Hang.</span></button>
-        <button class="tile" type="button" data-section="photo"><small>03 · Licht</small><strong>Prilliante Fotografie</strong><span>Bilder, Fotobücher und visuelle Geschichten.</span></button>
-        <button class="tile" type="button" data-section="projects"><small>04 · Machen</small><strong>Prilliante Projekte</strong><span>Technische und kreative Vorhaben im Überblick.</span></button>
-        <button class="tile" type="button" data-section="knowledge"><small>05 · Denken</small><strong>Prilliante Wissenssammlung</strong><span>Notizen, Ideen und Fundstücke aus vielen Bereichen.</span></button>
-      </section>
-    </div>
-    <footer class="site-footer"><span>PRILLIANT.AT · ALLES IST VERBUNDEN · 42</span><a href="impressum.html">Impressum</a></footer>
+    <header class="site-header"><button class="brand" type="button" data-home aria-label="Zur Übersicht"><img src="assets/prilliant-logo-original.svg" alt=""><span>PRILLIANT</span></button><nav class="main-nav" aria-label="Hauptnavigation"><button type="button" data-section="recipes">Rezepte</button><button type="button" data-section="garden">Nasenberg</button><button type="button" data-section="photo">Fotografie</button><button type="button" data-section="projects">Projekte</button><button type="button" data-section="knowledge">Wissen</button></nav></header>
+    <div class="content-inner"><section class="overview-hero"><div><p class="eyebrow">Prilliante Familie</p><h1>Ideen mit Charakter.</h1><p class="lead">Rezepte, Natur, Fotografie, Projekte und Wissen – persönlich gesammelt, sorgfältig gestaltet und mit einer gewissen Vorliebe für die Zahl 42.</p></div><div class="hero-42" aria-hidden="true">42</div></section><section class="tiles" aria-label="Bereiche"><button class="tile" type="button" data-section="recipes"><small>01 · Genuss</small><strong>Prilliante Rezepte</strong><span>Rezepte, Küchentechnik und kulinarische Experimente.</span></button><button class="tile" type="button" data-section="garden"><small>02 · Natur</small><strong>Prillianter Nasenberg</strong><span>Garten, Natur, Ausbau und das Leben am Hang.</span></button><button class="tile" type="button" data-section="photo"><small>03 · Licht</small><strong>Prilliante Fotografie</strong><span>Bilder, Fotobücher und visuelle Geschichten.</span></button><button class="tile" type="button" data-section="projects"><small>04 · Machen</small><strong>Prilliante Projekte</strong><span>Technische und kreative Vorhaben im Überblick.</span></button><button class="tile" type="button" data-section="knowledge"><small>05 · Denken</small><strong>Prilliante Wissenssammlung</strong><span>Notizen, Ideen und Fundstücke aus vielen Bereichen.</span></button></section></div>
+    <footer class="site-footer"><div><span class="footer-brand">PRILLIANT</span><div class="footer-tagline">Ideen · Natur · Fotografie · Wissen · 42</div><div class="footer-copy">© 2026 Helmut Franz Priller</div></div><nav class="footer-links" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav></footer>
   </main>
-
-  <section class="section-page" id="section-page" aria-live="polite">
-    <div class="section-shell">
-      <div class="section-topbar"><button class="back-button" id="back-button" type="button">← Zur Übersicht</button><span class="section-mark">Prilliant.at</span></div>
-      <div class="section-hero"><div><p class="eyebrow" id="section-eyebrow"></p><h2 id="section-title"></h2><p id="section-description"></p></div><div class="wild-42" aria-hidden="true">42</div></div>
-      <footer class="site-footer"><span>PRILLIANT.AT · 42</span><a href="impressum.html">Impressum</a></footer>
-    </div>
-  </section>
-
+  <section class="section-page" id="section-page" aria-live="polite"><div class="section-shell"><div class="section-topbar"><button class="back-button" id="back-button" type="button">← Zur Übersicht</button><span class="section-mark">Prilliant.at</span></div><div class="section-hero"><div><p class="eyebrow" id="section-eyebrow"></p><h2 id="section-title"></h2><p id="section-description"></p></div><div class="wild-42" aria-hidden="true">42</div></div><a class="home-42" href="index.html" aria-label="Zur Startseite">42</a><footer class="site-footer"><div><span class="footer-brand">PRILLIANT</span><div class="footer-copy">© 2026 Helmut Franz Priller</div></div><nav class="footer-links" aria-label="Rechtliches"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></nav></footer></div></section>
   <div class="gate" id="gate"><button class="gate-button" id="gate-button" type="button"><img class="gate-logo" src="assets/prilliant-logo-original.svg" alt="Prilliante Familie"></button></div>
-
   <script>
-    (()=>{
-      const sections={
-        recipes:{eyebrow:"Genuss · Experiment · Erinnerung",title:"Prilliante Rezepte",description:"Eine persönliche Sammlung aus bewährten Gerichten, mutigen Varianten und Küchenideen, die bleiben dürfen."},
-        garden:{eyebrow:"Nasenberg · Garten · Leben",title:"Prillianter Nasenberg",description:"Ein Nordhang, vier Terrassen und die langsame Verwandlung eines Ortes in Lebensraum, Rückzugsgebiet und Genussgarten."},
-        photo:{eyebrow:"Licht · Blick · Geschichte",title:"Prilliante Fotografie",description:"Bilder, die nicht nur zeigen, was da war, sondern etwas davon bewahren, wie es sich angefühlt hat."},
-        projects:{eyebrow:"Idee · Plan · Umsetzung",title:"Prilliante Projekte",description:"Technische und kreative Vorhaben – vom ersten Gedanken bis zur funktionierenden, möglichst eleganten Lösung."},
-        knowledge:{eyebrow:"Neugier · Kosmos · Zusammenhang",title:"Prilliante Wissenssammlung",description:"Notizen, Entdeckungen und Fragen aus vielen Bereichen – weil die interessantesten Dinge selten in nur eine Schublade passen."}
-      };
-      const gate=document.getElementById("gate");
-      const page=document.getElementById("section-page");
-      document.getElementById("gate-button").addEventListener("click",()=>gate.classList.add("open"));
-      document.querySelectorAll("[data-section]").forEach(button=>button.addEventListener("click",()=>{
-        const item=sections[button.dataset.section];
-        document.getElementById("section-eyebrow").textContent=item.eyebrow;
-        document.getElementById("section-title").textContent=item.title;
-        document.getElementById("section-description").textContent=item.description;
-        page.classList.add("visible");
-        document.body.style.overflow="hidden";
-      }));
-      const close=()=>{page.classList.remove("visible");document.body.style.overflow=""};
-      document.getElementById("back-button").addEventListener("click",close);
-      document.querySelectorAll("[data-home]").forEach(button=>button.addEventListener("click",close));
-    })();
+    (()=>{const sections={recipes:{eyebrow:"Genuss · Experiment · Erinnerung",title:"Prilliante Rezepte",description:"Eine persönliche Sammlung aus bewährten Gerichten, mutigen Varianten und Küchenideen, die bleiben dürfen."},garden:{eyebrow:"Nasenberg · Garten · Leben",title:"Prillianter Nasenberg",description:"Ein Nordhang, vier Terrassen und die langsame Verwandlung eines Ortes in Lebensraum, Rückzugsgebiet und Genussgarten."},photo:{eyebrow:"Licht · Blick · Geschichte",title:"Prilliante Fotografie",description:"Bilder, die nicht nur zeigen, was da war, sondern etwas davon bewahren, wie es sich angefühlt hat."},projects:{eyebrow:"Idee · Plan · Umsetzung",title:"Prilliante Projekte",description:"Technische und kreative Vorhaben – vom ersten Gedanken bis zur funktionierenden, möglichst eleganten Lösung."},knowledge:{eyebrow:"Neugier · Kosmos · Zusammenhang",title:"Prilliante Wissenssammlung",description:"Notizen, Entdeckungen und Fragen aus vielen Bereichen – weil die interessantesten Dinge selten in nur eine Schublade passen."}};const gate=document.getElementById("gate"),page=document.getElementById("section-page");document.getElementById("gate-button").addEventListener("click",()=>gate.classList.add("open"));document.querySelectorAll("[data-section]").forEach(button=>button.addEventListener("click",()=>{const item=sections[button.dataset.section];document.getElementById("section-eyebrow").textContent=item.eyebrow;document.getElementById("section-title").textContent=item.title;document.getElementById("section-description").textContent=item.description;page.classList.add("visible");document.body.style.overflow="hidden"}));const close=()=>{page.classList.remove("visible");document.body.style.overflow=""};document.getElementById("back-button").addEventListener("click",close);document.querySelectorAll("[data-home]").forEach(button=>button.addEventListener("click",close))})();
   </script>
 </body>
 </html>
