@@ -1,0 +1,58 @@
+locale: de
+
+backend:
+  name: github
+  repo: Humbughi/chef-leo
+  branch: develop
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: "https://prilliant.at"
+display_url: "https://prilliant.at"
+logo_url: "/assets/logo.png"
+
+collections:
+  - name: "rezepte"
+    label: "Rezepte"
+    label_singular: "Rezept"
+    folder: "content/rezepte"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}}"
+    fields:
+      - { label: "Titel", name: "title", widget: "string" }
+      - { label: "Autor", name: "author", widget: "string", default: "Chef Leo" }
+      - { label: "Datum", name: "date", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false }
+      - label: "Bereich"
+        name: "section"
+        widget: "select"
+        options:
+          - { label: "Meine Rezepte", value: "meine-rezepte" }
+          - { label: "Mutters Rezeptbuch", value: "mutters-rezeptbuch" }
+      - { label: "Kategorie", name: "category", widget: "string", required: false }
+      - { label: "Kurzbeschreibung", name: "description", widget: "text", required: false }
+      - label: "Zutaten"
+        name: "ingredients"
+        widget: "list"
+        field: { label: "Zutat", name: "ingredient", widget: "string" }
+      - { label: "Zubereitung", name: "body", widget: "markdown" }
+      - { label: "Varianten", name: "variants", widget: "markdown", required: false }
+      - { label: "Notizen", name: "notes", widget: "markdown", required: false }
+      - { label: "Titelbild", name: "image", widget: "image", required: false }
+      - { label: "Von mir gekocht", name: "tested", widget: "boolean", default: true }
+      - { label: "Favorit", name: "favorite", widget: "boolean", default: false }
+      - { label: "Original unverändert bewahren", name: "preserve_original", widget: "boolean", default: false }
+
+  - name: "seiten"
+    label: "Seitentexte"
+    files:
+      - label: "Rezepte – Einleitung"
+        name: "rezepte_intro"
+        file: "content/seiten/rezepte.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Text", name: "body", widget: "markdown" }
