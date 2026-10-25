@@ -60,6 +60,33 @@
 
     .leaflet-control-attribution a { color: #a7ecff !important; }
 
+    .home-link {
+      position: fixed;
+      top: clamp(1rem, 3vw, 2.5rem);
+      left: clamp(1rem, 3vw, 2.5rem);
+      z-index: 1100;
+      display: inline-flex;
+      align-items: center;
+      padding: .68rem .95rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--accent-2);
+      background: rgba(5, 15, 21, .92);
+      font-family: "Cascadia Code", "Consolas", monospace;
+      font-size: .85rem;
+      font-weight: 700;
+      text-decoration: none;
+      backdrop-filter: blur(8px);
+      transition: border-color .18s ease, background .18s ease;
+    }
+
+    .home-link:hover,
+    .home-link:focus-visible {
+      border-color: var(--accent);
+      background: rgba(8, 27, 35, .96);
+      outline: 2px solid transparent;
+    }
+
     .shell {
       position: relative;
       z-index: 1000;
@@ -225,7 +252,7 @@
   </style>
 </head>
 <body>
-  <div id="map" aria-hidden="true"></div>
+  <a class="home-link" href="../" aria-label="Zur Prilliant-Startseite">← Zur Startseite</a>\n  <div id="map" aria-hidden="true"></div>
 
   <main class="shell">
     <div class="layout">
